@@ -1,3 +1,4 @@
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Link, Tabs } from 'expo-router';
 
 import { HeaderButton } from '../../components/HeaderButton';
@@ -13,7 +14,9 @@ export default function TabLayout() {
         name="assistant"
         options={{
           title: 'Assistant',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="robot" size={24} color={color} />
+          ),
           headerRight: () => (
             <Link href="/modal" asChild>
               <HeaderButton />
@@ -25,14 +28,14 @@ export default function TabLayout() {
         name="conversations"
         options={{
           title: 'Conversations',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome name="list" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome name="gear" size={24} color={color} />,
         }}
       />
     </Tabs>

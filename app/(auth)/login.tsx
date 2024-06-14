@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, StyleSheet, TextInput, View, Button } from 'react-native';
+import { Alert, StyleSheet, TextInput, View, Button, Image } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 
 import { supabase } from '~/utils/supabase';
 
@@ -44,48 +45,69 @@ export default function Login() {
     <>
       <Stack.Screen options={{ headerShown: true, title: 'Login' }} />
       <View style={styles.container}>
-        <View style={[styles.verticallySpaced, styles.mt20]}>
+        <SvgUri
+          style={styles.tinyLogo}
+          uri="https://www.svgrepo.com/show/285252/robot.svg"
+          width="100"
+          height="100"
+        />
+        <View>
           <TextInput
             style={styles.textInput}
             onChangeText={(text) => setEmail(text)}
             value={email}
             placeholder="email@address.com"
+            placeholderTextColor="rgb(148, 163, 184)"
             autoCapitalize="none"
           />
         </View>
-        <View style={styles.verticallySpaced}>
+        <View>
           <TextInput
             style={styles.textInput}
             onChangeText={(text) => setPassword(text)}
             value={password}
             secureTextEntry
             placeholder="Contraseña"
+            placeholderTextColor="rgb(148, 163, 184)"
             autoCapitalize="none"
           />
         </View>
         {!isSignUp && (
           <>
-            <Button
-              title="Iniciar Sesión"
-              disabled={loading}
-              onPress={() => signInWithEmail()}
-              className="mt-4 w-full rounded bg-blue-500 p-4"
-            />
+            <View style={styles.buttonText}>
+              <Button
+                title="Iniciar Sesión"
+                disabled={loading}
+                onPress={() => signInWithEmail()}
+                color="white"
+              />
+            </View>
+
             <Button
               title="Quiero registrarme"
               disabled={loading}
               onPress={() => setIsSignUp(true)}
-              className="bg-black-500 mt-4 w-full rounded p-4"
+              color="white"
             />
           </>
         )}
         {isSignUp && (
-          <Button
-            title="Registrar Usuario"
-            disabled={loading}
-            onPress={() => signUpWithEmail()}
-            className="mt-4 w-full rounded bg-blue-500 p-4"
-          />
+          <>
+            <View style={styles.buttonText}>
+              <Button
+                title="Registrar Usuario"
+                disabled={loading}
+                onPress={() => signUpWithEmail()}
+                color="white"
+              />
+            </View>
+            <Button
+              title="Volver"
+              disabled={loading}
+              onPress={() => setIsSignUp(false)}
+              color="white"
+            />
+          </>
         )}
       </View>
     </>
@@ -94,37 +116,36 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
-    padding: 12,
+    backgroundColor: 'rgb(15, 23, 42)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    padding: 16,
   },
-  verticallySpaced: {
-    paddingTop: 4,
-    paddingBottom: 4,
-    alignSelf: 'stretch',
-  },
-  mt20: {
-    marginTop: 20,
-  },
-  buttonContainer: {
-    backgroundColor: '#000968',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+  textInput: {
+    borderColor: 'rgb(148, 163, 184)',
+    color: 'rgb(148, 163, 184)',
+    borderRadius: 26,
+    borderStyle: 'solid',
+    borderWidth: 2,
+    padding: 16,
     margin: 8,
   },
   buttonText: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: 'bold',
     alignSelf: 'center',
-    textTransform: 'uppercase',
-  },
-  textInput: {
-    borderColor: '#000968',
-    borderRadius: 4,
+    borderColor: 'rgb(148, 163, 184)',
+    backgroundColor: 'rgb(148, 163, 184)',
+    borderRadius: 26,
     borderStyle: 'solid',
-    borderWidth: 1,
-    padding: 12,
-    margin: 8,
+    borderWidth: 2,
+    color: 'white',
+    marginTop: 10,
+    marginBottom: 10,
+    width: 230,
+  },
+  tinyLogo: {
+    color: 'white',
+    alignSelf: 'center',
+    marginBottom: 14,
   },
 });

@@ -16,7 +16,7 @@ export default function RootLayout() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        router.replace('/(tabs)/home');
+        router.replace('/(tabs)/assistant');
       } else {
         console.log('no user');
       }
@@ -24,7 +24,7 @@ export default function RootLayout() {
 
     supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
-        router.replace('/(tabs)/home');
+        router.replace('/(tabs)/assistant');
       } else {
         console.log('no user');
         router.replace('/(auth)/login');
