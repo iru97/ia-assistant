@@ -1,8 +1,7 @@
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Link, Tabs } from 'expo-router';
 
-import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
+/* import { HeaderButton } from '~/components/HeaderButton'; */
 
 export default function TabLayout() {
   return (
@@ -17,11 +16,11 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="robot" size={24} color={color} />
           ),
-          headerRight: () => (
+/*           headerRight: () => (
             <Link href="/modal" asChild>
               <HeaderButton />
             </Link>
-          ),
+          ), */
         }}
       />
       <Tabs.Screen
