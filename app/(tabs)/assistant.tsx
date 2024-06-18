@@ -1,14 +1,14 @@
 import { Stack } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
-import { ScreenContent } from '~/components/ScreenContent';
+import Chat from '~/components/Chat';
 
-export default function Home() {
+export default function Assistant() {
   return (
     <>
       <Stack.Screen options={{ title: 'Assistant' }} />
       <View style={styles.container}>
-        <ScreenContent path="app/(tabs)/assistant.tsx" title="Assistant" />
+        <Chat />
       </View>
     </>
   );

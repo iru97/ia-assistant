@@ -1,7 +1,4 @@
 import { Feather } from '@expo/vector-icons';
-import { User } from '@supabase/supabase-js';
-import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -12,20 +9,11 @@ import {
   Image,
 } from 'react-native';
 
+import { useAuth } from '~/providers/AuthProvider';
 import { supabase } from '~/utils/supabase';
 
 export default function SettingsPage() {
-  const [user, setUser] = useState(null as User | null);
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setUser(user);
-      } else {
-        alert('Error Accessing User');
-        router.replace('/(auth)/login');
-      }
-    });
-  }, []);
+  const { user } = useAuth();
 
   const doLogout = async () => {
     const { error } = await supabase.auth.signOut();
